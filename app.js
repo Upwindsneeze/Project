@@ -11,6 +11,7 @@ import { initUrls } from './modules/urls.js';
 import { initFiles } from './modules/files.js';
 import { initNotes } from './modules/notes.js';
 import { initMedia } from './modules/media.js';
+import { initSecurity } from './modules/security.js';
 import { initSettings } from './modules/settings.js';
 
 // ---- Shared namespace, so modules can call core helpers ----
@@ -56,7 +57,7 @@ function renderIcons() {
 // ============================================================
 // Navigation
 // ============================================================
-const views = ['dashboard', 'games', 'tools', 'media', 'urls', 'files', 'notes', 'settings'];
+const views = ['dashboard', 'games', 'tools', 'media', 'urls', 'files', 'notes', 'security', 'settings'];
 
 function navigateTo(viewName) {
   if (!views.includes(viewName)) return;
@@ -187,6 +188,7 @@ let searchIndex = [
   { id: 'nav-urls', label: 'URL Tools', icon: 'link', action: () => navigateTo('urls') },
   { id: 'nav-files', label: 'File Tools', icon: 'file-cog', action: () => navigateTo('files') },
   { id: 'nav-notes', label: 'Notepad', icon: 'notebook-pen', action: () => navigateTo('notes') },
+  { id: 'nav-security', label: 'Sicherheit', icon: 'shield-check', action: () => navigateTo('security') },
   { id: 'nav-settings', label: 'Einstellungen', icon: 'settings', action: () => navigateTo('settings') },
 ];
 
@@ -285,6 +287,7 @@ function boot() {
   initFiles(Nexus);
   initNotes(Nexus);
   initMedia(Nexus);
+  initSecurity(Nexus);
   initSettings(Nexus);
 
   initPalette(); // after modules so their items are indexed

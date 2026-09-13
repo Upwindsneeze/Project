@@ -42,6 +42,9 @@
       <button class="nav-item" data-view="notes">
         <i class="icon" data-icon="notebook-pen"></i><span>Notepad</span>
       </button>
+      <button class="nav-item" data-view="security">
+        <i class="icon" data-icon="shield-check"></i><span>Sicherheit</span>
+      </button>
     </nav>
 
     <div class="sidebar-footer">
@@ -109,6 +112,10 @@
           <button class="quick-card" data-goto="notes">
             <i class="icon" data-icon="notebook-pen"></i>
             <span>Notepad</span>
+          </button>
+          <button class="quick-card" data-goto="security">
+            <i class="icon" data-icon="shield-check"></i>
+            <span>Datei-Scan</span>
           </button>
         </div>
 
@@ -195,6 +202,15 @@
           <p class="muted">Schnelle Notizen, gespeichert auf diesem Gerät.</p>
         </div>
         <div id="notesArea"></div>
+      </section>
+
+      <!-- SECURITY -->
+      <section class="view" id="view-security" data-view-panel="security">
+        <div class="view-head">
+          <h1>Sicherheit</h1>
+          <p class="muted">Dateien vor dem Öffnen auf Viren prüfen lassen.</p>
+        </div>
+        <div id="securityArea"></div>
       </section>
 
       <!-- SETTINGS -->
