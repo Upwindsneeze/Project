@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus — Digital Toolbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide-static/0.441.0/font/lucide.css" onerror="this.remove()">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">N</div>
+      <span class="brand-name">Nexus</span>
+    </div>
+
+    <nav class="nav" aria-label="Hauptnavigation">
+      <button class="nav-item is-active" data-view="dashboard">
+        <i class="icon" data-icon="layout-grid"></i><span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-view="games">
+        <i class="icon" data-icon="gamepad-2"></i><span>Games</span>
+      </button>
+      <button class="nav-item" data-view="tools">
+        <i class="icon" data-icon="wrench"></i><span>Tools</span>
+      </button>
+      <button class="nav-item" data-view="media">
+        <i class="icon" data-icon="film"></i><span>Media</span>
+      </button>
+      <button class="nav-item" data-view="urls">
+        <i class="icon" data-icon="link"></i><span>URL Tools</span>
+      </button>
+      <button class="nav-item" data-view="files">
+        <i class="icon" data-icon="file-cog"></i><span>Files</span>
+      </button>
+      <button class="nav-item" data-view="notes">
+        <i class="icon" data-icon="notebook-pen"></i><span>Notepad</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="nav-item" data-view="settings">
+        <i class="icon" data-icon="settings"></i><span>Einstellungen</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile nav toggle -->
+  <button class="mobile-toggle" id="mobileToggle" aria-label="Menü öffnen">
+    <i class="icon" data-icon="menu"></i>
+  </button>
+  <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="search-trigger" id="searchTrigger">
+        <i class="icon" data-icon="search"></i>
+        <span>Suchen…</span>
+        <kbd>Ctrl K</kbd>
+      </button>
+      <div class="topbar-right">
+        <span class="clock" id="clock">--:--</span>
+        <div class="avatar" title="Profil">N</div>
+      </div>
+    </header>
+
+    <main class="content" id="content">
+
+      <!-- DASHBOARD -->
+      <section class="view is-active" id="view-dashboard" data-view-panel="dashboard">
+        <div class="view-head">
+          <h1>Welcome back</h1>
+          <p class="muted">Alles, was du und deine Crew brauchen — an einem Ort.</p>
+        </div>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-goto="games">
+            <i class="icon" data-icon="gamepad-2"></i>
+            <span>Game Lookup</span>
+          </button>
+          <button class="quick-card" data-goto="urls">
+            <i class="icon" data-icon="link"></i>
+            <span>URL Tools</span>
+          </button>
+          <button class="quick-card" data-goto="media">
+            <i class="icon" data-icon="film"></i>
+            <span>Media Tools</span>
+          </button>
+          <button class="quick-card" data-tool="calculator">
+            <i class="icon" data-icon="calculator"></i>
+            <span>Calculator</span>
+          </button>
+          <button class="quick-card" data-tool="unit-converter">
+            <i class="icon" data-icon="arrow-left-right"></i>
+            <span>Unit Converter</span>
+          </button>
+          <button class="quick-card" data-tool="random-generator">
+            <i class="icon" data-icon="dices"></i>
+            <span>Random Generator</span>
+          </button>
+          <button class="quick-card" data-goto="notes">
+            <i class="icon" data-icon="notebook-pen"></i>
+            <span>Notepad</span>
+          </button>
+        </div>
+
+        <div class="panel-row">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Zuletzt verwendet</h2>
+            </div>
+            <ul class="recent-list" id="recentList">
+              <li class="empty-state">Noch nichts genutzt — leg los, und es taucht hier auf.</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Status</h2>
+            </div>
+            <ul class="status-list">
+              <li><span class="dot dot-ok"></span> Frontend läuft lokal</li>
+              <li><span class="dot dot-warn"></span> Backend nicht verbunden <span class="muted">(optional)</span></li>
+              <li><span class="dot dot-ok"></span> Daten bleiben auf diesem Gerät</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- GAMES -->
+      <section class="view" id="view-games" data-view-panel="games">
+        <div class="view-head">
+          <h1>Games</h1>
+          <p class="muted">Spiel suchen und Infos nachschlagen.</p>
+        </div>
+        <div class="search-row">
+          <input type="text" id="gameSearchInput" placeholder="z. B. Minecraft, Valorant, Terraria…" autocomplete="off">
+          <button class="btn btn-primary" id="gameSearchBtn"><i class="icon" data-icon="search"></i> Suchen</button>
+        </div>
+        <div class="chip-row" id="gameSuggestions"></div>
+        <div id="gameResult" class="result-area"></div>
+      </section>
+
+      <!-- TOOLS -->
+      <section class="view" id="view-tools" data-view-panel="tools">
+        <div class="view-head">
+          <h1>Tools</h1>
+          <p class="muted">Kleine Helfer für den Alltag.</p>
+        </div>
+        <div class="tool-grid" id="toolGrid">
+          <!-- gefüllt von tools.js -->
+        </div>
+        <div id="toolWorkspace" class="tool-workspace"></div>
+      </section>
+
+      <!-- MEDIA -->
+      <section class="view" id="view-media" data-view-panel="media">
+        <div class="view-head">
+          <h1>Media Tools</h1>
+          <p class="muted">Audio/Video-Verarbeitung für Inhalte, an denen du die Rechte hast.</p>
+        </div>
+        <div id="mediaArea"></div>
+      </section>
+
+      <!-- URL TOOLS -->
+      <section class="view" id="view-urls" data-view-panel="urls">
+        <div class="view-head">
+          <h1>URL Tools</h1>
+          <p class="muted">Encode, decode, parse.</p>
+        </div>
+        <div id="urlArea"></div>
+      </section>
+
+      <!-- FILES -->
+      <section class="view" id="view-files" data-view-panel="files">
+        <div class="view-head">
+          <h1>File Tools</h1>
+          <p class="muted">Alles läuft lokal in deinem Browser — nichts wird hochgeladen.</p>
+        </div>
+        <div id="filesArea"></div>
+      </section>
+
+      <!-- NOTES -->
+      <section class="view" id="view-notes" data-view-panel="notes">
+        <div class="view-head">
+          <h1>Notepad</h1>
+          <p class="muted">Schnelle Notizen, gespeichert auf diesem Gerät.</p>
+        </div>
+        <div id="notesArea"></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" id="view-settings" data-view-panel="settings">
+        <div class="view-head">
+          <h1>Einstellungen</h1>
+          <p class="muted">Passe Nexus an deinen Geschmack an.</p>
+        </div>
+        <div class="settings-grid" id="settingsArea"></div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- Command Palette -->
+<div class="palette-overlay" id="paletteOverlay">
+  <div class="palette">
+    <div class="palette-input-row">
+      <i class="icon" data-icon="search"></i>
+      <input type="text" id="paletteInput" placeholder="Wohin möchtest du?" autocomplete="off">
+    </div>
+    <ul class="palette-results" id="paletteResults"></ul>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<!-- Generic Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Titel</h3>
+      <button class="icon-btn" id="modalClose"><i class="icon" data-icon="x"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
